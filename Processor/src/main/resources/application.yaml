@@ -1,0 +1,16 @@
+spring:
+  main:
+    web-application-type: none # disable prevent web app, prevent run with port
+
+  cloud:
+    function:
+      definition: saleProcessor
+    stream:
+      bindings:
+        saleProcessor-in-0: # subscrib to get data from topic
+          destination: sale.created
+        saleProcessor-out-0: # push data to topic
+          destination: sale.transform
+      kafka:
+        binder:
+          brokers: localhost:9092

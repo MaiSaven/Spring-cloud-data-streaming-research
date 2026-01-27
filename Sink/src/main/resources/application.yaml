@@ -1,0 +1,15 @@
+spring:
+
+  main:
+    web-application-type: none
+
+  cloud:
+    function:
+      definition: saleConsumer
+    stream:
+      bindings:
+        saleConsumer-in-0:
+          destination: sale.transform
+      kafka:
+        binder:
+          brokers: localhost:9092
