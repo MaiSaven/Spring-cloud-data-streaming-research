@@ -1,0 +1,29 @@
+spring:
+  application:
+    name: research
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dbcs-mgmt2
+    username: postgres
+    password: admin
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update   # validate | update | create | create-drop
+    show-sql: true
+    properties:
+      hibernate:
+#        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    function:
+      definition: saleProducer #function name
+    stream:
+      bindings:
+        saleProducer-out-0:
+          destination: sale.created # topic name
+      kafka:
+        binder:
+          brokers: localhost:9092
